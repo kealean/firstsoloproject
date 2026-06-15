@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1897e23ddb4787d4f81a4cf1cc91b49f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Script.Player.Note
-  vfx: {fileID: 6881510400287262148}
+  poolItem: {fileID: 11400000, guid: a017d47f59120e24fa40a52ff7c3612f, type: 2}
 --- !u!1 &7408020519620073244
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,10 +198,5 @@ PrefabInstance:
 --- !u!4 &4791842955079836398 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1693917622436746550, guid: b0bea6b1b914916448e6b9fad6d7532b, type: 3}
-  m_PrefabInstance: {fileID: 6125470390985701336}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &6881510400287262148 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 757171957080224284, guid: b0bea6b1b914916448e6b9fad6d7532b, type: 3}
   m_PrefabInstance: {fileID: 6125470390985701336}
   m_PrefabAsset: {fileID: 0}

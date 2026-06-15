@@ -18,7 +18,7 @@ namespace Script.Player {
         public string songFile;
         public int snapDivision;
         public List<NoteData> notes;
-        
+
         public static SongMapData FromJson(string jsonString) {
             return JsonUtility.FromJson<SongMapData>(jsonString);
         }

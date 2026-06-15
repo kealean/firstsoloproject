@@ -17,7 +17,7 @@ namespace script.Lib.Pooling {
             for (var i = 0; i < count; i++) {
                 var item = CreatePoolItem();
                 _pool.Push(item);
-            } 
+            }
         }
 
         private IPoolable CreatePoolItem() {
@@ -29,12 +29,10 @@ namespace script.Lib.Pooling {
 
         public IPoolable Pop() {
             IPoolable item = null;
-            if (_pool.Count <= 0) {
+            if (_pool.Count <= 0)
                 item = CreatePoolItem();
-            }
-            else {
+            else
                 item = _pool.Pop();
-            }
             item.GameObject.SetActive(true);
             return item;
         }

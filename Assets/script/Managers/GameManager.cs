@@ -1,12 +1,10 @@
-﻿using System;
-using script.Lib;
-using UnityEditor;
+﻿using script.Lib;
 using UnityEngine;
 
 namespace script.Managers {
     public class GameManager : MonoSingleton<GameManager> {
         public int songNumber;
-        
+
         public TextAsset[] jsonMapFile;
 
         protected override void Awake() {

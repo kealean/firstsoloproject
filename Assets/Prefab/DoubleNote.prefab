@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1897e23ddb4787d4f81a4cf1cc91b49f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Script.Player.Note
-  vfx: {fileID: 3648303971863867990}
+  poolItem: {fileID: 11400000, guid: a017d47f59120e24fa40a52ff7c3612f, type: 2}
 --- !u!1001 &4045185467555037258
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -198,10 +198,5 @@ PrefabInstance:
 --- !u!4 &3432134180197963132 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1693917622436746550, guid: b0bea6b1b914916448e6b9fad6d7532b, type: 3}
-  m_PrefabInstance: {fileID: 4045185467555037258}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &3648303971863867990 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 757171957080224284, guid: b0bea6b1b914916448e6b9fad6d7532b, type: 3}
   m_PrefabInstance: {fileID: 4045185467555037258}
   m_PrefabAsset: {fileID: 0}

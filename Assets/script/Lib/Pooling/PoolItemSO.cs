@@ -9,7 +9,7 @@ namespace script.Lib.Pooling {
 
         private void OnValidate() {
             if (Prefab != null) {
-                var item = Prefab.GetComponent<PoolItemSO>();
+                var item = Prefab.GetComponent<IPoolable>();
                 if (item == null) {
                     Prefab = null;
                     Debug.LogWarning("Can not found IPoolable component");

@@ -1,5 +1,4 @@
-﻿using System;
-using script.Managers;
+﻿using script.Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,21 +12,18 @@ namespace script.UI {
         [SerializeField] private TextMeshProUGUI difficultyText;
         [SerializeField] private Button prev;
         [SerializeField] private Button next;
-        
+
         private void Update() {
             prev.interactable = GameManager.Instance.songNumber != 0;
             next.interactable = GameManager.Instance.songNumber != 2;
-            if (GameManager.Instance.songNumber != 0 && Keyboard.current.rightArrowKey.wasPressedThisFrame) {
+            if (GameManager.Instance.songNumber != 0 && Keyboard.current.rightArrowKey.wasPressedThisFrame)
                 GameManager.Instance.songNumber--;
-            }
 
-            if (GameManager.Instance.songNumber != 2 && Keyboard.current.leftArrowKey.wasPressedThisFrame) {
+            if (GameManager.Instance.songNumber != 2 && Keyboard.current.leftArrowKey.wasPressedThisFrame)
                 GameManager.Instance.songNumber++;
-            }
-            
-            if (Keyboard.current.spaceKey.wasPressedThisFrame || Keyboard.current.enterKey.wasPressedThisFrame) {
+
+            if (Keyboard.current.spaceKey.wasPressedThisFrame || Keyboard.current.enterKey.wasPressedThisFrame)
                 SceneManager.LoadSceneAsync(2);
-            }
         }
     }
 }

@@ -387,10 +387,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::script.UI.Menu
   songData: {fileID: 881294990}
-  bpmText: {fileID: 0}
-  difficultyText: {fileID: 0}
-  prev: {fileID: 0}
-  next: {fileID: 0}
+  bpmText: {fileID: 1299025605}
+  difficultyText: {fileID: 1347151301}
+  prev: {fileID: 1170094511}
+  next: {fileID: 1844901134}
 --- !u!1 &881294988
 GameObject:
   m_ObjectHideFlags: 0

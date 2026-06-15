@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.WSA;
 
 namespace script.Lib.Pooling {
     public class PoolManager : MonoSingleton<PoolManager> {
@@ -28,12 +26,12 @@ namespace script.Lib.Pooling {
                 item.ResetItem();
                 return item;
             }
-            
+
             return null;
         }
 
         public void Push(IPoolable item) {
-            if(_poolDict.TryGetValue(item.Item.ItemName, out var pool)) pool.Push(item);
+            if (_poolDict.TryGetValue(item.Item.ItemName, out var pool)) pool.Push(item);
         }
     }
 }
