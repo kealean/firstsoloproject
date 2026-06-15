@@ -9,6 +9,11 @@ namespace script.Managers {
         
         public TextAsset[] jsonMapFile;
 
+        protected override void Awake() {
+            base.Awake();
+            DontDestroyOnLoad(gameObject);
+        }
+
         private void Update() {
             var clamp = Mathf.Clamp(songNumber, 0, jsonMapFile.Length);
             songNumber = clamp;

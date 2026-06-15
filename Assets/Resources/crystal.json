@@ -1,9 +1,9 @@
 {
-  "bpm": 87,
+  "bpm": 174,
   "beatHeight": 80,
   "snapDivision": 4,
   "direction": "Up",
-  "songFile": "C:\\Users\\uiseu\\Downloads\\Crystallized - \u304B\u3081\u308A\u3042(Camellia)\\Camellia - crystallized.ogg",
+  "songFile": "./Camellia - crystallized.ogg",
   "songTitle": "crystalized",
   "composer": "camellia",
   "notes": [

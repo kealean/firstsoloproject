@@ -1,9 +1,10 @@
 using UnityEngine;
 using DG.Tweening;
+using script.Lib.Pooling;
 
 namespace Script.Player {
     public class Note : MonoBehaviour {
-        [SerializeField] private ParticleSystem vfx;
+        [SerializeField] private PoolItemSO poolItem;
         
         public NoteData Data { get; private set; }
         public float TargetBeat { get; private set; }
@@ -42,7 +43,7 @@ namespace Script.Player {
 
         public void OnHit() {
             IsHit = true;
-            vfx.Play();
+            PoolManager.Instance.Pop(poolItem.ItemName);
             transform.DOKill();
             
             transform.DOScale(_originalScale * 1.5f, 0.15f).SetEase(Ease.OutQuad);
