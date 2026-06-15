@@ -6,12 +6,17 @@ using UnityEngine.SceneManagement;
 namespace script.UI {
     public class MainTitle : MonoBehaviour {
         [SerializeField] private GameObject loadingText;
+        private Tween _tween;
 
         private void Update() {
             if (Keyboard.current.anyKey.wasPressedThisFrame) {
                 SceneManager.LoadSceneAsync(1);
-                loadingText.transform.DOMoveX(0, 1f).SetEase(Ease.OutBack);
+                _tween = loadingText.transform.DOMoveX(0, 1f).SetEase(Ease.OutBack);
             }
+        }
+
+        private void OnDestroy() {
+            _tween?.Kill();
         }
     }
 }

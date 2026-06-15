@@ -4,6 +4,7 @@ using UnityEngine;
 namespace script.Managers {
     public class GameManager : MonoSingleton<GameManager> {
         public int songNumber;
+        public double calibrationTime = 0.1;
 
         public TextAsset[] jsonMapFile;
 

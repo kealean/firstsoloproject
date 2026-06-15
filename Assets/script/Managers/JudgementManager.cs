@@ -5,35 +5,54 @@ using Unity.Collections;
 using Unity.Jobs;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement; // 씬 전환을 위해 네임스페이스 추가
 
 namespace script.Managers {
     public class JudgementManager : MonoBehaviour {
         [Header("References")] [SerializeField]
         private InputActionAsset inputActionsAsset;
 
+        // 유니티 인스펙터 연동을 위한 기존 NoteManager 참조
         [SerializeField] private NoteManager noteManager;
         [SerializeField] private TextMeshProUGUI judgementText;
         [SerializeField] private TextMeshProUGUI rateText;
         [SerializeField] private TextMeshProUGUI scoreText;
-
-        private readonly Queue<Note> _noteQueue = new();
-
+        
+        private int _countNotes;
+        private float _totalRate;
+        private float _totalScore;
+        
         private readonly float[] _scoreMultipliers = { 0f, 1.1f, 1.0f, 0.6f, 0.3f, 0f };
 
-        private int _countNotes;
+        private InputAction _upAction;
         private InputAction _downAction;
         private InputAction _leftAction;
         private InputAction _rightAction;
-        private float _totalRate;
-        private float _totalScore;
 
-        private InputAction _upAction;
+        // NoteManager와 CalibrationManager를 공통으로 담기 위한 인터페이스 참조 변수
+        private INoteManager _noteManager;
+
+        private readonly System.Collections.Generic.Queue<Note> _noteQueue = new();
 
         private void Awake() {
             _countNotes = 0;
             _totalRate = 0;
             _totalScore = 0;
-            if (noteManager == null) noteManager = FindFirstObjectByType<NoteManager>();
+            
+            // 1순위: 인스펙터에 지정된 NoteManager를 참조합니다.
+            if (noteManager != null) {
+                _noteManager = noteManager;
+            }
+
+            // 2순위: 인스펙터에 없을 경우 씬 전체에서 NoteManager를 자동 검색합니다.
+            if (_noteManager == null) {
+                _noteManager = FindFirstObjectByType<NoteManager>();
+            }
+
+            // 3순위: 캘리브레이션 씬 등에서 CalibrationManager가 단독 동작할 경우 이를 자동 바인딩합니다.
+            if (_noteManager == null) {
+                _noteManager = FindFirstObjectByType<CalibrationManager>();
+            }
 
             if (inputActionsAsset != null) {
                 var playerMap = inputActionsAsset.FindActionMap("Player");
@@ -42,14 +61,14 @@ namespace script.Managers {
                     _downAction = playerMap.FindAction("Down");
                     _leftAction = playerMap.FindAction("Left");
                     _rightAction = playerMap.FindAction("Right");
-                }
-            }
+                } 
+            } 
         }
 
         private void Update() {
-            if (noteManager == null) return;
+            if (_noteManager == null) return;
 
-            var currentDspTime = AudioSettings.dspTime;
+            double currentDspTime = AudioSettings.dspTime;
 
             while (_noteQueue.Count > 0) {
                 var oldestNote = _noteQueue.Peek();
@@ -64,7 +83,7 @@ namespace script.Managers {
                     oldestNote.IsHit = true;
 
                     oldestNote.OnMiss();
-                    ApplyResult(5);
+                    ApplyResult(5, 0.1);
                 }
                 else {
                     break;
@@ -147,18 +166,20 @@ namespace script.Managers {
         }
 
         private void ProcessJudgement(double inputTime, int inputDir) {
-            if (noteManager == null) return;
+            if (_noteManager == null) return;
 
             CleanQueue();
 
             if (_noteQueue.Count == 0) return;
 
-            var inputDspTime = noteManager.StartTime + (inputTime - noteManager.InputSystemStartTime);
+            // 오디오 시작 DSP 시간과 기기 실행 후 경과 입력 시간 차이를 이용해 정밀한 입력 시점을 구합니다.
+            double inputDspTime = _noteManager.StartTime + (inputTime - _noteManager.InputSystemStartTime);
 
-            var targetNote = _noteQueue.Peek();
+            Note targetNote = _noteQueue.Peek();
 
-            var diff = inputDspTime - targetNote.TargetDspTime;
-            var absDiff = diff < 0 ? -diff : diff;
+            // 정박(TargetDspTime) 대비 실제 사용자가 키를 입력한 시점(inputDspTime)의 오차를 구합니다.
+            double diff = inputDspTime - targetNote.TargetDspTime;
+            double absDiff = diff < 0 ? -diff : diff;
 
             if (absDiff <= 0.100) {
                 var directionMatches = (inputDir & targetNote.Data.dir) != 0;
@@ -180,28 +201,82 @@ namespace script.Managers {
                     var handle = job.ScheduleParallel(1, 64, default);
                     handle.Complete();
 
-                    var judgeType = results[0];
-                    ApplyResult(judgeType);
+                    int judgeType = results[0];
+                    ApplyResult(judgeType, diff); // 판정 처리 시 실제 오차값(diff)을 인자로 넘깁니다.
 
                     targetNote.OnHit();
 
                     targetTimes.Dispose();
                     results.Dispose();
+
+                    // 캘리브레이션 씬 전용 동작: 입력 오차를 CalibrationManager에 누적 전달합니다.
+                    if (_noteManager.IsCalibrationMode && _noteManager is CalibrationManager calibMgr) {
+                        calibMgr.RecordOffset(diff);
+                    }
                 }
             }
         }
 
-        private void ApplyResult(int judgeType) {
+        /// <summary>
+        /// 판정 등급에 맞춰 점수 및 정확도를 누적하고, 씬 모드에 맞게 UI 결과를 갱신합니다.
+        /// </summary>
+        private void ApplyResult(int judgeType, double diff) {
             _countNotes++;
             if (judgeType == 0) return;
 
             var multiplier = _scoreMultipliers[judgeType];
             _totalScore += 1000 * multiplier;
-
+            
             _totalRate += multiplier * 100;
             scoreText.SetText($"{_totalScore}");
-            judgementText.SetText(GetJudgeName(judgeType));
-            rateText.SetText($"{_totalRate / _countNotes:F1}%");
+            
+            // 캘리브레이션 모드와 일반 게임 모드 출력 분기 처리
+            if (_noteManager != null && _noteManager.IsCalibrationMode) {
+                // 초 단위 오차를 ms 단위로 환산 (1초 = 1000ms)
+                double diffMs = diff * 1000.0;
+                // 소수점 첫째 자리까지 ms 단위로 표기 (부호 포함)
+                judgementText.SetText($"{(diffMs >= 0 ? "+" : "")}{diffMs:F1}ms");
+            } else {
+                // 일반 플레이 씬에서는 기존대로 판정 이름(PERFECT 등) 출력
+                judgementText.SetText(GetJudgeName(judgeType));
+            }
+            
+            rateText.SetText($"{_totalRate/_countNotes:F1}%");
+
+            // 모든 노트가 판정 처리(입력 완료)되었는지 검사합니다.
+            CheckSongCompletion();
+        }
+
+        /// <summary>
+        /// 곡에 포함된 모든 노트가 완수(판정 처리)되었는지 체크하여 씬 이동 프로세스를 밟습니다.
+        /// </summary>
+        private void CheckSongCompletion() {
+            if (_noteManager == null || _noteManager.MapData == null || _noteManager.MapData.notes == null) return;
+
+            int totalNotes = _noteManager.MapData.notes.Count;
+            // 판정된 노트 갯수가 총 노트 갯수 이상일 때 완수로 판단합니다.
+            if (_countNotes >= totalNotes) {
+                if (_noteManager.IsCalibrationMode) {
+                    // 캘리브레이션 모드: 판정 텍스트 위치에 최종 조율된 캘리브레이션 결과 노출
+                    if (GameManager.Instance != null) {
+                        double finalCalibMs = GameManager.Instance.calibrationTime * 1000.0;
+                        judgementText.SetText($"Result: {(finalCalibMs >= 0 ? "+" : "")}{finalCalibMs:F1}ms");
+                    }
+                    // 2초 딜레이 후 3번 씬으로 이동
+                    StartCoroutine(LoadSceneWithDelay(3, 2.0f));
+                } else {
+                    // 일반 게임 모드: 2초 딜레이 후 4번 씬으로 이동
+                    StartCoroutine(LoadSceneWithDelay(4, 2.0f));
+                }
+            }
+        }
+
+        /// <summary>
+        /// 지정한 시간(초)만큼 대기한 후 다음 씬으로 전환합니다.
+        /// </summary>
+        private System.Collections.IEnumerator LoadSceneWithDelay(int sceneIndex, float delay) {
+            yield return new WaitForSeconds(delay);
+            SceneManager.LoadScene(sceneIndex);
         }
 
         private string GetJudgeName(int type) {

@@ -35,10 +35,6 @@ namespace Script.Player {
             }
         }
 
-        private void Start() {
-            StartTime = AudioSettings.dspTime;
-        }
-
         private void Update() {
             var elapsedTime = AudioSettings.dspTime - StartTime;
             var progress = (float)(elapsedTime * speed) % 4.0f;
