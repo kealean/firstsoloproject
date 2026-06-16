@@ -42,10 +42,5 @@ namespace script.Managers {
                 SceneManager.LoadSceneAsync(1);
             }
         }
-
-        private void OnDestroy() {
-            anim.SetBool(Clear, false);
-            anim.SetBool(Fail, false);
-        }
     }
 }
