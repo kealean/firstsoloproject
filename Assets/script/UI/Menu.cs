@@ -25,6 +25,9 @@ namespace script.UI {
             if (Keyboard.current.spaceKey.wasPressedThisFrame || Keyboard.current.enterKey.wasPressedThisFrame)
                 SceneManager.LoadSceneAsync(2);
             
+            if(Keyboard.current.cKey.wasPressedThisFrame)
+                SceneManager.LoadSceneAsync(5);
+            
             if(Keyboard.current.escapeKey.wasPressedThisFrame)
                 Application.Quit();
 

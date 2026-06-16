@@ -3,214 +3,209 @@
   "beatHeight": 80,
   "snapDivision": 4,
   "direction": "Up",
-  "songFile": "./Camellia - crystallized.ogg",
-  "songTitle": "crystalized",
-  "composer": "camellia",
+  "songFile": "crystallized.ogg",
+  "songTitle": "Crystallized",
+  "composer": "Camellia",
   "notes": [
     {
       "measure": 1,
+      "position": 1,
+      "dir": 3
+    },
+    {
+      "measure": 1,
       "position": 2,
-      "dir": 2
+      "dir": 3
     },
     {
       "measure": 1,
       "position": 3,
-      "dir": 2
+      "dir": 3
     },
     {
       "measure": 1,
       "position": 4,
-      "dir": 4
+      "dir": 3
     },
     {
       "measure": 2,
       "position": 1,
-      "dir": 4
+      "dir": 3
     },
     {
       "measure": 2,
       "position": 2,
-      "dir": 4
+      "dir": 3
     },
     {
       "measure": 2,
       "position": 3,
-      "dir": 4
+      "dir": 3
     },
     {
       "measure": 2,
       "position": 4,
+      "dir": 3
+    },
+    {
+      "measure": 3,
+      "position": 1,
+      "dir": 12
+    },
+    {
+      "measure": 3,
+      "position": 2,
+      "dir": 12
+    },
+    {
+      "measure": 3,
+      "position": 3,
+      "dir": 12
+    },
+    {
+      "measure": 3,
+      "position": 4,
+      "dir": 12
+    },
+    {
+      "measure": 4,
+      "position": 1,
+      "dir": 12
+    },
+    {
+      "measure": 4,
+      "position": 2,
+      "dir": 12
+    },
+    {
+      "measure": 4,
+      "position": 4,
+      "dir": 12
+    },
+    {
+      "measure": 4,
+      "position": 3,
+      "dir": 12
+    },
+    {
+      "measure": 5,
+      "position": 1,
+      "dir": 8
+    },
+    {
+      "measure": 5,
+      "position": 2,
       "dir": 2
     },
     {
-      "measure": 3,
+      "measure": 5,
+      "position": 3,
+      "dir": 4
+    },
+    {
+      "measure": 5,
+      "position": 4,
+      "dir": 1
+    },
+    {
+      "measure": 6,
       "position": 1,
+      "dir": 8
+    },
+    {
+      "measure": 6,
+      "position": 2,
       "dir": 2
     },
     {
-      "measure": 3,
-      "position": 2,
-      "dir": 3
-    },
-    {
-      "measure": 3,
-      "position": 3,
-      "dir": 3
-    },
-    {
-      "measure": 3,
-      "position": 4,
-      "dir": 12
-    },
-    {
-      "measure": 4,
-      "position": 1,
-      "dir": 12
-    },
-    {
-      "measure": 4,
-      "position": 2,
-      "dir": 3
-    },
-    {
-      "measure": 4,
-      "position": 3,
-      "dir": 3
-    },
-    {
-      "measure": 4,
-      "position": 4,
-      "dir": 3
-    },
-    {
-      "measure": 5,
-      "position": 1,
-      "dir": 3
-    },
-    {
-      "measure": 5,
-      "position": 2,
-      "dir": 3
-    },
-    {
-      "measure": 5,
-      "position": 3,
-      "dir": 3
-    },
-    {
-      "measure": 5,
-      "position": 4,
-      "dir": 3
-    },
-    {
       "measure": 6,
-      "position": 1,
-      "dir": 3
-    },
-    {
-      "measure": 6,
-      "position": 2,
-      "dir": 12
-    },
-    {
-      "measure": 6,
-      "position": 3,
-      "dir": 12
-    },
-    {
-      "measure": 6,
-      "position": 4,
-      "dir": 12
-    },
-    {
-      "measure": 7,
-      "position": 1,
-      "dir": 12
-    },
-    {
-      "measure": 7,
-      "position": 2,
-      "dir": 3
-    },
-    {
-      "measure": 7,
-      "position": 3,
-      "dir": 3
-    },
-    {
-      "measure": 7,
-      "position": 4,
-      "dir": 3
-    },
-    {
-      "measure": 8,
-      "position": 1,
-      "dir": 3
-    },
-    {
-      "measure": 8,
-      "position": 2,
-      "dir": 12
-    },
-    {
-      "measure": 8,
-      "position": 3,
-      "dir": 12
-    },
-    {
-      "measure": 8,
-      "position": 4,
-      "dir": 12
-    },
-    {
-      "measure": 9,
-      "position": 2,
-      "dir": 8
-    },
-    {
-      "measure": 9,
-      "position": 3,
-      "dir": 8
-    },
-    {
-      "measure": 9,
-      "position": 4,
-      "dir": 8
-    },
-    {
-      "measure": 10,
-      "position": 1,
-      "dir": 8
-    },
-    {
-      "measure": 10,
-      "position": 2,
-      "dir": 4
-    },
-    {
-      "measure": 10,
       "position": 3,
       "dir": 4
     },
     {
-      "measure": 10,
+      "measure": 6,
       "position": 4,
-      "dir": 4
+      "dir": 1
     },
     {
-      "measure": 11,
+      "measure": 7,
       "position": 1,
+      "dir": 8
+    },
+    {
+      "measure": 7,
+      "position": 2,
+      "dir": 2
+    },
+    {
+      "measure": 7,
+      "position": 4,
+      "dir": 1
+    },
+    {
+      "measure": 7,
+      "position": 3,
       "dir": 4
     },
     {
-      "measure": 11,
+      "measure": 8,
+      "position": 1,
+      "dir": 8
+    },
+    {
+      "measure": 8,
       "position": 2,
+      "dir": 2
+    },
+    {
+      "measure": 8,
+      "position": 3,
+      "dir": 4
+    },
+    {
+      "measure": 8,
+      "position": 4,
       "dir": 1
     },
     {
       "measure": 9,
       "position": 1,
       "dir": 8
+    },
+    {
+      "measure": 9,
+      "position": 2,
+      "dir": 2
+    },
+    {
+      "measure": 9,
+      "position": 3,
+      "dir": 4
+    },
+    {
+      "measure": 9,
+      "position": 4,
+      "dir": 1
+    },
+    {
+      "measure": 10,
+      "position": 1,
+      "dir": 8
+    },
+    {
+      "measure": 10,
+      "position": 2,
+      "dir": 2
+    },
+    {
+      "measure": 10,
+      "position": 3,
+      "dir": 4
+    },
+    {
+      "measure": 10,
+      "position": 4,
+      "dir": 1
     }
   ]
 }
