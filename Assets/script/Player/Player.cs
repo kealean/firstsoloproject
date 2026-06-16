@@ -18,21 +18,20 @@ namespace Script.Player {
         public double StartTime { get; set; }
 
         private void Awake() {
-            if (corners != null && corners.Length > 0) {
-                var bestIndex = 0;
-                var minVal = float.MaxValue;
-                for (var i = 0; i < corners.Length; i++) {
-                    var val = corners[i].x + corners[i].y;
-                    if (Mathf.Abs(corners[i].y) < 0.001f && Mathf.Abs(corners[i].z) > 0.001f)
-                        val = corners[i].x + corners[i].z;
-                    if (val < minVal) {
-                        minVal = val;
-                        bestIndex = i;
-                    }
+            if (corners == null || corners.Length <= 0) return;
+            var bestIndex = 0;
+            var minVal = float.MaxValue;
+            for (var i = 0; i < corners.Length; i++) {
+                var val = corners[i].x + corners[i].y;
+                if (Mathf.Abs(corners[i].y) < 0.001f && Mathf.Abs(corners[i].z) > 0.001f)
+                    val = corners[i].x + corners[i].z;
+                if (val < minVal) {
+                    minVal = val;
+                    bestIndex = i;
                 }
-
-                startingCornerIndex = bestIndex;
             }
+
+            startingCornerIndex = bestIndex;
         }
 
         private void Update() {

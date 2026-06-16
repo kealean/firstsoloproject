@@ -181,39 +181,37 @@ namespace script.Managers {
             double diff = inputDspTime - targetNote.TargetDspTime;
             double absDiff = diff < 0 ? -diff : diff;
 
-            if (absDiff <= 0.100) {
-                var directionMatches = (inputDir & targetNote.Data.dir) != 0;
+            if (!(absDiff <= 0.100)) return;
+            var directionMatches = (inputDir & targetNote.Data.dir) != 0;
 
-                if (directionMatches) {
-                    _noteQueue.Dequeue();
+            if (!directionMatches) return;
+            _noteQueue.Dequeue();
 
-                    var targetTimes = new NativeArray<double>(1, Allocator.TempJob);
-                    var results = new NativeArray<int>(1, Allocator.TempJob);
+            var targetTimes = new NativeArray<double>(1, Allocator.TempJob);
+            var results = new NativeArray<int>(1, Allocator.TempJob);
 
-                    targetTimes[0] = targetNote.TargetDspTime;
+            targetTimes[0] = targetNote.TargetDspTime;
 
-                    var job = new JudgementJob {
-                        TargetDspTimes = targetTimes,
-                        InputTimestamp = inputDspTime,
-                        Results = results
-                    };
+            var job = new JudgementJob {
+                TargetDspTimes = targetTimes,
+                InputTimestamp = inputDspTime,
+                Results = results
+            };
 
-                    var handle = job.ScheduleParallel(1, 64, default);
-                    handle.Complete();
+            var handle = job.ScheduleParallel(1, 64, default);
+            handle.Complete();
 
-                    int judgeType = results[0];
-                    ApplyResult(judgeType, diff); // 판정 처리 시 실제 오차값(diff)을 인자로 넘깁니다.
+            int judgeType = results[0];
+            ApplyResult(judgeType, diff); // 판정 처리 시 실제 오차값(diff)을 인자로 넘깁니다.
 
-                    targetNote.OnHit();
+            targetNote.OnHit();
 
-                    targetTimes.Dispose();
-                    results.Dispose();
+            targetTimes.Dispose();
+            results.Dispose();
 
-                    // 캘리브레이션 씬 전용 동작: 입력 오차를 CalibrationManager에 누적 전달합니다.
-                    if (_noteManager.IsCalibrationMode && _noteManager is CalibrationManager calibMgr) {
-                        calibMgr.RecordOffset(diff);
-                    }
-                }
+            // 캘리브레이션 씬 전용 동작: 입력 오차를 CalibrationManager에 누적 전달합니다.
+            if (_noteManager.IsCalibrationMode && _noteManager is CalibrationManager calibMgr) {
+                calibMgr.RecordOffset(diff);
             }
         }
 
@@ -228,10 +226,12 @@ namespace script.Managers {
             _totalScore += 1000 * multiplier;
             
             _totalRate += multiplier * 100;
+            GameManager.Instance.score = (int)_totalScore;
+            GameManager.Instance.rate = _totalRate;
             scoreText.SetText($"{_totalScore}");
             
             // 캘리브레이션 모드와 일반 게임 모드 출력 분기 처리
-            if (_noteManager != null && _noteManager.IsCalibrationMode) {
+            if (_noteManager is { IsCalibrationMode: true }) {
                 // 초 단위 오차를 ms 단위로 환산 (1초 = 1000ms)
                 double diffMs = diff * 1000.0;
                 // 소수점 첫째 자리까지 ms 단위로 표기 (부호 포함)
@@ -239,6 +239,23 @@ namespace script.Managers {
             } else {
                 // 일반 플레이 씬에서는 기존대로 판정 이름(PERFECT 등) 출력
                 judgementText.SetText(GetJudgeName(judgeType));
+                switch (judgeType) {
+                    case 1:
+                        GameManager.Instance.perfectPlus++;
+                        break;
+                    case 2:
+                        GameManager.Instance.perfect++;
+                        break;
+                    case 3:
+                        GameManager.Instance.good++;
+                        break;
+                    case 4:
+                        GameManager.Instance.poor++;
+                        break;
+                    case 5:
+                        GameManager.Instance.miss++;
+                        break;
+                }
             }
             
             rateText.SetText($"{_totalRate/_countNotes:F1}%");
@@ -255,19 +272,18 @@ namespace script.Managers {
 
             int totalNotes = _noteManager.MapData.notes.Count;
             // 판정된 노트 갯수가 총 노트 갯수 이상일 때 완수로 판단합니다.
-            if (_countNotes >= totalNotes) {
-                if (_noteManager.IsCalibrationMode) {
-                    // 캘리브레이션 모드: 판정 텍스트 위치에 최종 조율된 캘리브레이션 결과 노출
-                    if (GameManager.Instance != null) {
-                        double finalCalibMs = GameManager.Instance.calibrationTime * 1000.0;
-                        judgementText.SetText($"Result: {(finalCalibMs >= 0 ? "+" : "")}{finalCalibMs:F1}ms");
-                    }
-                    // 2초 딜레이 후 3번 씬으로 이동
-                    StartCoroutine(LoadSceneWithDelay(3, 2.0f));
-                } else {
-                    // 일반 게임 모드: 2초 딜레이 후 4번 씬으로 이동
-                    StartCoroutine(LoadSceneWithDelay(4, 2.0f));
+            if (_countNotes < totalNotes) return;
+            if (_noteManager.IsCalibrationMode) {
+                // 캘리브레이션 모드: 판정 텍스트 위치에 최종 조율된 캘리브레이션 결과 노출
+                if (GameManager.Instance != null) {
+                    double finalCalibMs = GameManager.Instance.calibrationTime * 1000.0;
+                    judgementText.SetText($"Result: {(finalCalibMs >= 0 ? "+" : "")}{finalCalibMs:F1}ms");
                 }
+                // 2초 딜레이 후 3번 씬으로 이동
+                StartCoroutine(LoadSceneWithDelay(1, 2.0f));
+            } else {
+                // 일반 게임 모드: 2초 딜레이 후 4번 씬으로 이동
+                StartCoroutine(LoadSceneWithDelay(4, 2.0f));
             }
         }
 

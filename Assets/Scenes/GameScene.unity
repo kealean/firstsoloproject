@@ -1482,6 +1482,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::script.Managers.GameManager
   songNumber: 0
+  calibrationTime: 0.1
+  perfectPlus: 0
+  perfect: 0
+  good: 0
+  poor: 0
+  miss: 0
   jsonMapFile:
   - {fileID: 4900000, guid: 73e420b65e2b06546bdfa79763837dc3, type: 3}
 --- !u!4 &1048834210

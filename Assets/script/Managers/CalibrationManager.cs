@@ -108,9 +108,9 @@ namespace script.Managers {
             var currentBeat = (float)(elapsedTime * (MapData.bpm / 60.0f));
 
             // 생성된 노트들이 플레이어 다가오기 4박자 전부터 나타나도록 조절합니다.
-            for (var i = 0; i < _activeNotes.Count; i++) {
-                if (_activeNotes[i] != null && !_activeNotes[i].IsHit) {
-                    _activeNotes[i].CheckAndScaleUp(currentBeat, 0.5f, DG.Tweening.Ease.OutBack);
+            foreach (var t in _activeNotes) {
+                if (t != null && !t.IsHit) {
+                    t.CheckAndScaleUp(currentBeat, 0.5f, DG.Tweening.Ease.OutBack);
                 }
             }
         }
@@ -136,7 +136,7 @@ namespace script.Managers {
         /// 캘리브레이션용 노트를 월드 상에 소환하고 JudgementManager 큐에 등록합니다.
         /// </summary>
         private void SpawnNotes() {
-            var startDelayBeats = 16.0f;
+            const float startDelayBeats = 16.0f;
             var secondsPerBeat = 60.0 / MapData.bpm;
 
             foreach (var noteData in MapData.notes) {

@@ -92,9 +92,9 @@ namespace script.Managers {
             var elapsedTime = AudioSettings.dspTime - StartTime;
             var currentBeat = (float)(elapsedTime * (MapData.bpm / 60.0f));
 
-            for (var i = 0; i < _activeNotes.Count; i++)
-                if (_activeNotes[i] != null && !_activeNotes[i].IsHit)
-                    _activeNotes[i].CheckAndScaleUp(currentBeat, scaleUpDuration, scaleUpEase);
+            foreach (var t in _activeNotes)
+                if (t != null && !t.IsHit)
+                    t.CheckAndScaleUp(currentBeat, scaleUpDuration, scaleUpEase);
         }
 
         private void SpawnNotes() {

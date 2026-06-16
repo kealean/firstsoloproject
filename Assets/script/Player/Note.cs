@@ -33,11 +33,10 @@ namespace Script.Player {
         }
 
         public void CheckAndScaleUp(float currentBeat, float duration, Ease easeType) {
-            if (!_isScaledUp && TargetBeat - currentBeat <= 4.0f) {
-                _isScaledUp = true;
-                transform.DOKill();
-                transform.DOScale(_originalScale, duration).SetEase(easeType);
-            }
+            if (_isScaledUp || !(TargetBeat - currentBeat <= 4.0f)) return;
+            _isScaledUp = true;
+            transform.DOKill();
+            transform.DOScale(_originalScale, duration).SetEase(easeType);
         }
 
         public void OnHit() {

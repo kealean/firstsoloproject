@@ -9,6 +9,7 @@ namespace script.UI {
 
         public void Initialize() {
             title.SetText($"{noteManager.MapData.composer} - {noteManager.MapData.songTitle}");
+            GameManager.Instance.titleText = $"{noteManager.MapData.composer} - {noteManager.MapData.songTitle}";
         }
     }
 }
