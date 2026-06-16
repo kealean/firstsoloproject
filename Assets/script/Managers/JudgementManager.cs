@@ -227,7 +227,7 @@ namespace script.Managers {
             
             _totalRate += multiplier * 100;
             GameManager.Instance.score = (int)_totalScore;
-            GameManager.Instance.rate = _totalRate;
+            GameManager.Instance.rate = _totalRate/_countNotes;
             scoreText.SetText($"{_totalScore}");
             
             // 캘리브레이션 모드와 일반 게임 모드 출력 분기 처리
