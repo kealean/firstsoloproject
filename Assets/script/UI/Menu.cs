@@ -15,8 +15,8 @@ namespace script.UI {
 
         private void Update() {
             prev.interactable = GameManager.Instance.songNumber != 0;
-            next.interactable = GameManager.Instance.songNumber != GameManager.Instance.jsonMapFile.Length;
-            if (GameManager.Instance.songNumber != GameManager.Instance.jsonMapFile.Length - 1 &&
+            next.interactable = GameManager.Instance.songNumber != GameManager.Instance.jsonMapFile.Length -2;
+            if (GameManager.Instance.songNumber != GameManager.Instance.jsonMapFile.Length - 2 &&
                 Keyboard.current.rightArrowKey.wasPressedThisFrame)
                 GameManager.Instance.songNumber++;
 
@@ -36,7 +36,7 @@ namespace script.UI {
                 case 0:
                     songData.SetText("Camellia - crystallized");
                     bpmText.SetText("BPM: 174");
-                    difficultyText.SetText("Difficult: 3");
+                    difficultyText.SetText("Difficult: 7");
                     break;
             }
         }

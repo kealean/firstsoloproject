@@ -1471,10 +1471,10 @@ LineRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Positions:
-  - {x: -4.5, y: -4, z: 0}
-  - {x: -4.5, y: 4.4, z: 0}
-  - {x: 4.8, y: 4.4, z: 0}
-  - {x: 4.8, y: -4, z: 0}
+  - {x: -5, y: -4, z: 0}
+  - {x: -5, y: 4.4, z: 0}
+  - {x: 5, y: 4.4, z: 0}
+  - {x: 5, y: -4, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.2
