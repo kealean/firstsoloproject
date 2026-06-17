@@ -78,7 +78,7 @@ namespace script.Managers {
 
                 if (audioSource.clip != null) {
                     var secondsPerBeat = 60.0 / MapData.bpm;
-                    var delaySeconds = 16.0 * secondsPerBeat - GameManager.Instance.calibrationTime;
+                    var delaySeconds = 16.0 * secondsPerBeat - GameManager.Instance.calibrationTime - MapData.offset/1000f;
                     audioSource.PlayScheduled(StartTime + delaySeconds);
                 }
             }

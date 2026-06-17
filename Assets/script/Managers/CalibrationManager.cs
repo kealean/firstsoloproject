@@ -48,9 +48,7 @@ namespace script.Managers {
 
         private void Start() {
             // 현재 GameManager에 등록된 곡 번호에 맞춰 맵 데이터를 로드하고 파싱합니다.
-            if (GameManager.Instance != null && GameManager.Instance.jsonMapFile.Length > GameManager.Instance.songNumber) {
-                MapData = SongMapData.FromJson(GameManager.Instance.jsonMapFile[GameManager.Instance.songNumber].text);
-            }
+            MapData = SongMapData.FromJson(GameManager.Instance.jsonMapFile[^1].text);
 
             if (MapData == null) {
                 Debug.LogError("CalibrationManager: MapData 로딩에 실패했습니다.");

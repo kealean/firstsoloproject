@@ -1,5 +1,6 @@
 {
   "bpm": 120,
+  "offset": 0,
   "beatHeight": 80,
   "snapDivision": 4,
   "direction": "Up",
@@ -9,32 +10,7 @@
   "notes": [
     {
       "measure": 1,
-      "position": 2,
-      "dir": 12
-    },
-    {
-      "measure": 1,
-      "position": 3,
-      "dir": 12
-    },
-    {
-      "measure": 1,
       "position": 4,
-      "dir": 12
-    },
-    {
-      "measure": 2,
-      "position": 1,
-      "dir": 12
-    },
-    {
-      "measure": 2,
-      "position": 2,
-      "dir": 12
-    },
-    {
-      "measure": 2,
-      "position": 3,
       "dir": 12
     },
     {
@@ -44,37 +20,7 @@
     },
     {
       "measure": 3,
-      "position": 1,
-      "dir": 12
-    },
-    {
-      "measure": 3,
-      "position": 2,
-      "dir": 12
-    },
-    {
-      "measure": 3,
-      "position": 3,
-      "dir": 12
-    },
-    {
-      "measure": 3,
       "position": 4,
-      "dir": 12
-    },
-    {
-      "measure": 4,
-      "position": 1,
-      "dir": 12
-    },
-    {
-      "measure": 4,
-      "position": 2,
-      "dir": 12
-    },
-    {
-      "measure": 4,
-      "position": 3,
       "dir": 12
     },
     {
@@ -84,37 +30,7 @@
     },
     {
       "measure": 5,
-      "position": 1,
-      "dir": 12
-    },
-    {
-      "measure": 5,
-      "position": 2,
-      "dir": 12
-    },
-    {
-      "measure": 5,
-      "position": 3,
-      "dir": 12
-    },
-    {
-      "measure": 5,
       "position": 4,
-      "dir": 12
-    },
-    {
-      "measure": 6,
-      "position": 1,
-      "dir": 12
-    },
-    {
-      "measure": 6,
-      "position": 2,
-      "dir": 12
-    },
-    {
-      "measure": 6,
-      "position": 3,
       "dir": 12
     },
     {
@@ -124,97 +40,12 @@
     },
     {
       "measure": 7,
-      "position": 1,
-      "dir": 12
-    },
-    {
-      "measure": 7,
-      "position": 2,
-      "dir": 12
-    },
-    {
-      "measure": 7,
-      "position": 3,
-      "dir": 12
-    },
-    {
-      "measure": 7,
-      "position": 4,
-      "dir": 12
-    },
-    {
-      "measure": 8,
-      "position": 1,
-      "dir": 12
-    },
-    {
-      "measure": 8,
-      "position": 2,
-      "dir": 12
-    },
-    {
-      "measure": 8,
-      "position": 3,
-      "dir": 12
-    },
-    {
-      "measure": 8,
       "position": 4,
       "dir": 12
     },
     {
       "measure": 9,
-      "position": 1,
-      "dir": 12
-    },
-    {
-      "measure": 9,
-      "position": 2,
-      "dir": 12
-    },
-    {
-      "measure": 9,
-      "position": 3,
-      "dir": 12
-    },
-    {
-      "measure": 9,
       "position": 4,
-      "dir": 12
-    },
-    {
-      "measure": 10,
-      "position": 1,
-      "dir": 12
-    },
-    {
-      "measure": 10,
-      "position": 2,
-      "dir": 12
-    },
-    {
-      "measure": 10,
-      "position": 3,
-      "dir": 12
-    },
-    {
-      "measure": 10,
-      "position": 4,
-      "dir": 12
-    },
-    {
-      "measure": 11,
-      "position": 1,
-      "dir": 12
-    },
-    {
-      "measure": 11,
-      "position": 2,
-      "dir": 12
-    },
-    {
-      "measure": 11,
-      "position": 3,
       "dir": 12
     },
     {
@@ -223,8 +54,13 @@
       "dir": 12
     },
     {
-      "measure": 12,
-      "position": 1,
+      "measure": 8,
+      "position": 4,
+      "dir": 12
+    },
+    {
+      "measure": 10,
+      "position": 4,
       "dir": 12
     }
   ]

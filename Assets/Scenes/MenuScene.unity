@@ -335,6 +335,7 @@ MonoBehaviour:
   score: 0
   jsonMapFile:
   - {fileID: 4900000, guid: 73e420b65e2b06546bdfa79763837dc3, type: 3}
+  - {fileID: 4900000, guid: a9e623605f2333641a94014ab28ea40b, type: 3}
   titleText: 
 --- !u!4 &681133739
 Transform:

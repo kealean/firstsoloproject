@@ -1,5 +1,6 @@
 {
   "bpm": 174,
+  "offset": 1500,
   "beatHeight": 80,
   "snapDivision": 4,
   "direction": "Up",

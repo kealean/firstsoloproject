@@ -17,6 +17,7 @@ namespace Script.Player {
         public float bpm;
         public string songFile;
         public int snapDivision;
+        public int offset;
         public List<NoteData> notes;
 
         public static SongMapData FromJson(string jsonString) {
