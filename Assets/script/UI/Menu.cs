@@ -16,7 +16,8 @@ namespace script.UI {
         private void Update() {
             prev.interactable = GameManager.Instance.songNumber != 0;
             next.interactable = GameManager.Instance.songNumber != GameManager.Instance.jsonMapFile.Length;
-            if (GameManager.Instance.songNumber != GameManager.Instance.jsonMapFile.Length - 1 && Keyboard.current.rightArrowKey.wasPressedThisFrame)
+            if (GameManager.Instance.songNumber != GameManager.Instance.jsonMapFile.Length - 1 &&
+                Keyboard.current.rightArrowKey.wasPressedThisFrame)
                 GameManager.Instance.songNumber++;
 
             if (GameManager.Instance.songNumber != 0 && Keyboard.current.leftArrowKey.wasPressedThisFrame)
@@ -24,11 +25,11 @@ namespace script.UI {
 
             if (Keyboard.current.spaceKey.wasPressedThisFrame || Keyboard.current.enterKey.wasPressedThisFrame)
                 SceneManager.LoadSceneAsync(2);
-            
-            if(Keyboard.current.cKey.wasPressedThisFrame)
+
+            if (Keyboard.current.cKey.wasPressedThisFrame)
                 SceneManager.LoadSceneAsync(5);
-            
-            if(Keyboard.current.escapeKey.wasPressedThisFrame)
+
+            if (Keyboard.current.escapeKey.wasPressedThisFrame)
                 Application.Quit();
 
             switch (GameManager.Instance.songNumber) {
@@ -38,6 +39,14 @@ namespace script.UI {
                     difficultyText.SetText("Difficult: 3");
                     break;
             }
+        }
+
+        public void PrevBtn() {
+            GameManager.Instance.songNumber--;
+        }
+
+        public void NextBtn() {
+            GameManager.Instance.songNumber++;
         }
     }
 }

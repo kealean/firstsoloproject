@@ -1,7 +1,5 @@
-﻿using System;
-using script.Lib;
+﻿using script.Lib;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace script.Managers {
     public class GameManager : MonoSingleton<GameManager> {

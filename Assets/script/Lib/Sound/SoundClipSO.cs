@@ -7,11 +7,11 @@ namespace script.Managers {
             Sfx,
             Music
         }
-        
+
         public AudioType audioType;
         public AudioClip clip;
         public bool randomizePitch;
-        
+
         [Range(0f, 1f)] public float randomPitchRange = .1f;
         [Range(0.1f, 1f)] public float volume = 1f;
         [Range(0.1f, 3f)] public float basePitch = 1f;

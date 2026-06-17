@@ -6,17 +6,20 @@ using UnityEngine.Audio;
 using Random = UnityEngine.Random;
 
 namespace script.Managers {
-    public class SoundPlayer : MonoBehaviour , IPoolable {
-        [SerializeField] private AudioMixerGroup sfxGroup,  musicGroup;
+    public class SoundPlayer : MonoBehaviour, IPoolable {
+        [SerializeField] private AudioMixerGroup sfxGroup, musicGroup;
 
         private AudioSource _audioSource;
-        [field:SerializeField]public PoolItemSO Item { get; private set; }
-        public GameObject GameObject => this != null ? gameObject : null; 
-        public event Action<SoundPlayer> OnClipEnd;
 
         private void Awake() {
-            _audioSource =  GetComponent<AudioSource>();
+            _audioSource = GetComponent<AudioSource>();
         }
+
+        [field: SerializeField] public PoolItemSO Item { get; private set; }
+        public GameObject GameObject => this != null ? gameObject : null;
+
+        public void ResetItem() { }
+        public event Action<SoundPlayer> OnClipEnd;
 
         public void PlaySound(SoundClipSO clipData) {
             _audioSource.outputAudioMixerGroup = clipData.audioType switch {
@@ -24,17 +27,16 @@ namespace script.Managers {
                 SoundClipSO.AudioType.Music => musicGroup,
                 _ => _audioSource.outputAudioMixerGroup
             };
-            
+
             _audioSource.volume = clipData.volume;
             _audioSource.pitch = clipData.basePitch;
 
-            if (clipData.randomizePitch) {
+            if (clipData.randomizePitch)
                 _audioSource.pitch += Random.Range(-clipData.randomPitchRange, clipData.randomPitchRange);
-            }
-            
+
             _audioSource.clip = clipData.clip;
-            
-            float duration = _audioSource.clip.length + .2f;
+
+            var duration = _audioSource.clip.length + .2f;
             _audioSource.Play();
             StartCoroutine(DisableSoundTimer(duration));
         }
@@ -49,7 +51,5 @@ namespace script.Managers {
             PoolManager.Instance.Push(this);
             OnClipEnd?.Invoke(this);
         }
-
-        public void ResetItem() { }
     }
 }
