@@ -1,5 +1,4 @@
-﻿using System;
-using script.Managers;
+﻿using script.Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -21,7 +20,7 @@ namespace script.UI {
 
         private void Update() {
             prev.interactable = GameManager.Instance.songNumber != 0;
-            next.interactable = GameManager.Instance.songNumber != GameManager.Instance.jsonMapFile.Length -2;
+            next.interactable = GameManager.Instance.songNumber != GameManager.Instance.jsonMapFile.Length - 2;
             if (GameManager.Instance.songNumber != GameManager.Instance.jsonMapFile.Length - 2 &&
                 Keyboard.current.rightArrowKey.wasPressedThisFrame)
                 GameManager.Instance.songNumber++;
@@ -35,20 +34,18 @@ namespace script.UI {
             if (Keyboard.current.cKey.wasPressedThisFrame)
                 SceneManager.LoadSceneAsync(5);
 
-            if (Keyboard.current.escapeKey.wasPressedThisFrame) {
-                escMenu.SetActive(true);
-            }
+            if (Keyboard.current.escapeKey.wasPressedThisFrame) escMenu.SetActive(true);
 
             switch (GameManager.Instance.songNumber) {
                 case 0:
                     songData.SetText("Camellia - crystallized");
                     bpmText.SetText("BPM: 174");
-                    difficultyText.SetText("Difficult: 7");
+                    difficultyText.SetText("Difficult: ●●●●●●●○○○");
                     break;
                 case 1:
                     songData.SetText("ZUN - Bad Apple!!\nfeat.nomico");
                     bpmText.SetText("BPM: 174");
-                    difficultyText.SetText("Difficult: 10");
+                    difficultyText.SetText("Difficult: ●●●●●●●●●●");
                     break;
             }
         }
