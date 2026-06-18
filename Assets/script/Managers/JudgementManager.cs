@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using script.Lib.Sound;
 using Script.Player;
 using TMPro;
 using Unity.Collections;

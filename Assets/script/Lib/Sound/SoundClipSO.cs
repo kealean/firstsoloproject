@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace script.Managers {
+namespace script.Lib.Sound {
     [CreateAssetMenu(fileName = "SoundClip", menuName = "SO/SoundClip", order = 0)]
     public class SoundClipSO : ScriptableObject {
         public enum AudioType {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using script.Lib;
 using script.Lib.Pooling;
+using script.Lib.Sound;
 using UnityEngine;
 
 namespace script.Managers {

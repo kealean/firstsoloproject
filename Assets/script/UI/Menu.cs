@@ -1,4 +1,5 @@
-﻿using script.Managers;
+﻿using System;
+using script.Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,7 +14,10 @@ namespace script.UI {
         [SerializeField] private Button prev;
         [SerializeField] private Button next;
         [SerializeField] private GameObject escMenu;
-        
+
+        private void Start() {
+            escMenu.SetActive(false);
+        }
 
         private void Update() {
             prev.interactable = GameManager.Instance.songNumber != 0;
@@ -47,6 +51,10 @@ namespace script.UI {
                     difficultyText.SetText("Difficult: 10");
                     break;
             }
+        }
+
+        public void CaliBtn() {
+            SceneManager.LoadSceneAsync(5);
         }
 
         public void ContinueBtn() {
