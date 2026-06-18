@@ -12,6 +12,8 @@ namespace script.UI {
         [SerializeField] private TextMeshProUGUI difficultyText;
         [SerializeField] private Button prev;
         [SerializeField] private Button next;
+        [SerializeField] private GameObject escMenu;
+        
 
         private void Update() {
             prev.interactable = GameManager.Instance.songNumber != 0;
@@ -29,8 +31,9 @@ namespace script.UI {
             if (Keyboard.current.cKey.wasPressedThisFrame)
                 SceneManager.LoadSceneAsync(5);
 
-            if (Keyboard.current.escapeKey.wasPressedThisFrame)
-                Application.Quit();
+            if (Keyboard.current.escapeKey.wasPressedThisFrame) {
+                escMenu.SetActive(true);
+            }
 
             switch (GameManager.Instance.songNumber) {
                 case 0:
@@ -38,7 +41,20 @@ namespace script.UI {
                     bpmText.SetText("BPM: 174");
                     difficultyText.SetText("Difficult: 7");
                     break;
+                case 1:
+                    songData.SetText("ZUN - Bad Apple!!\nfeat.nomico");
+                    bpmText.SetText("BPM: 174");
+                    difficultyText.SetText("Difficult: 10");
+                    break;
             }
+        }
+
+        public void ContinueBtn() {
+            escMenu.SetActive(false);
+        }
+
+        public void ExitBtn() {
+            Application.Quit();
         }
 
         public void PrevBtn() {

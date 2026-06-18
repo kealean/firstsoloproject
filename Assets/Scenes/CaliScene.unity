@@ -203,6 +203,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &22056745
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 22056747}
+  - component: {fileID: 22056746}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &22056746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22056745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05fbd8017fe54226891da87882b1f951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::script.Managers.SoundManager
+  soundPlayerItem: {fileID: 11400000, guid: d81c03261def6284c970d3e14ebba812, type: 2}
+--- !u!4 &22056747
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22056745}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.66829, y: -2.27829, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &54780229
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,6 +839,8 @@ MonoBehaviour:
   judgementText: {fileID: 2051656247}
   rateText: {fileID: 2014953811}
   scoreText: {fileID: 604771571}
+  clip: {fileID: 11400000, guid: afc4c46b763e55244bdd2cc9efad9d25, type: 2}
+  playerTrm: {fileID: 1191081462}
 --- !u!4 &904311600
 Transform:
   m_ObjectHideFlags: 0
@@ -969,9 +1016,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::script.Managers.GameManager
   songNumber: 1
   calibrationTime: 0.1
+  perfectPlus: 0
+  perfect: 0
+  good: 0
+  poor: 0
+  miss: 0
+  rate: 0
+  score: 0
   jsonMapFile:
   - {fileID: 4900000, guid: 73e420b65e2b06546bdfa79763837dc3, type: 3}
   - {fileID: 4900000, guid: a9e623605f2333641a94014ab28ea40b, type: 3}
+  titleText: 
 --- !u!4 &1000841561
 Transform:
   m_ObjectHideFlags: 0
@@ -1846,3 +1901,4 @@ SceneRoots:
   - {fileID: 54780233}
   - {fileID: 516440110}
   - {fileID: 1834477186}
+  - {fileID: 22056747}

@@ -1,0 +1,387 @@
+{
+  "bpm": 138,
+  "offset": 174,
+  "beatHeight": 80,
+  "snapDivision": 16,
+  "direction": "Up",
+  "songFile": "C:\\Users\\uiseu\\Downloads\\01. Bad Apple!!.mp3",
+  "songTitle": "Bad Apple!!\\nfeat.nomico",
+  "composer": "ZUN",
+  "notes": [
+    {
+      "measure": 1,
+      "position": 1,
+      "dir": 4
+    },
+    {
+      "measure": 1,
+      "position": 5,
+      "dir": 1
+    },
+    {
+      "measure": 1,
+      "position": 9,
+      "dir": 8
+    },
+    {
+      "measure": 1,
+      "position": 13,
+      "dir": 3
+    },
+    {
+      "measure": 1,
+      "position": 15,
+      "dir": 3
+    },
+    {
+      "measure": 1,
+      "position": 16,
+      "dir": 12
+    },
+    {
+      "measure": 1,
+      "position": 14,
+      "dir": 12
+    },
+    {
+      "measure": 2,
+      "position": 1,
+      "dir": 3
+    },
+    {
+      "measure": 2,
+      "position": 5,
+      "dir": 4
+    },
+    {
+      "measure": 2,
+      "position": 9,
+      "dir": 1
+    },
+    {
+      "measure": 2,
+      "position": 13,
+      "dir": 12
+    },
+    {
+      "measure": 2,
+      "position": 15,
+      "dir": 3
+    },
+    {
+      "measure": 3,
+      "position": 1,
+      "dir": 12
+    },
+    {
+      "measure": 3,
+      "position": 5,
+      "dir": 1
+    },
+    {
+      "measure": 3,
+      "position": 9,
+      "dir": 8
+    },
+    {
+      "measure": 3,
+      "position": 13,
+      "dir": 3
+    },
+    {
+      "measure": 3,
+      "position": 14,
+      "dir": 12
+    },
+    {
+      "measure": 3,
+      "position": 15,
+      "dir": 3
+    },
+    {
+      "measure": 3,
+      "position": 16,
+      "dir": 12
+    },
+    {
+      "measure": 4,
+      "position": 1,
+      "dir": 3
+    },
+    {
+      "measure": 4,
+      "position": 5,
+      "dir": 4
+    },
+    {
+      "measure": 4,
+      "position": 9,
+      "dir": 1
+    },
+    {
+      "measure": 4,
+      "position": 13,
+      "dir": 12
+    },
+    {
+      "measure": 8,
+      "position": 1,
+      "dir": 3
+    },
+    {
+      "measure": 4,
+      "position": 15,
+      "dir": 3
+    },
+    {
+      "measure": 5,
+      "position": 1,
+      "dir": 12
+    },
+    {
+      "measure": 5,
+      "position": 5,
+      "dir": 1
+    },
+    {
+      "measure": 5,
+      "position": 9,
+      "dir": 8
+    },
+    {
+      "measure": 5,
+      "position": 13,
+      "dir": 3
+    },
+    {
+      "measure": 5,
+      "position": 14,
+      "dir": 12
+    },
+    {
+      "measure": 5,
+      "position": 15,
+      "dir": 3
+    },
+    {
+      "measure": 5,
+      "position": 16,
+      "dir": 12
+    },
+    {
+      "measure": 6,
+      "position": 1,
+      "dir": 3
+    },
+    {
+      "measure": 6,
+      "position": 5,
+      "dir": 4
+    },
+    {
+      "measure": 6,
+      "position": 9,
+      "dir": 1
+    },
+    {
+      "measure": 6,
+      "position": 13,
+      "dir": 12
+    },
+    {
+      "measure": 7,
+      "position": 1,
+      "dir": 12
+    },
+    {
+      "measure": 7,
+      "position": 5,
+      "dir": 2
+    },
+    {
+      "measure": 7,
+      "position": 9,
+      "dir": 4
+    },
+    {
+      "measure": 7,
+      "position": 13,
+      "dir": 3
+    },
+    {
+      "measure": 7,
+      "position": 14,
+      "dir": 12
+    },
+    {
+      "measure": 7,
+      "position": 15,
+      "dir": 3
+    },
+    {
+      "measure": 7,
+      "position": 16,
+      "dir": 12
+    },
+    {
+      "measure": 8,
+      "position": 5,
+      "dir": 8
+    },
+    {
+      "measure": 8,
+      "position": 9,
+      "dir": 2
+    },
+    {
+      "measure": 8,
+      "position": 13,
+      "dir": 4
+    },
+    {
+      "measure": 9,
+      "position": 1,
+      "dir": 1
+    },
+    {
+      "measure": 6,
+      "position": 15,
+      "dir": 3
+    },
+    {
+      "measure": 9,
+      "position": 5,
+      "dir": 3
+    },
+    {
+      "measure": 9,
+      "position": 9,
+      "dir": 3
+    },
+    {
+      "measure": 9,
+      "position": 13,
+      "dir": 3
+    },
+    {
+      "measure": 10,
+      "position": 1,
+      "dir": 3
+    },
+    {
+      "measure": 10,
+      "position": 5,
+      "dir": 3
+    },
+    {
+      "measure": 10,
+      "position": 9,
+      "dir": 3
+    },
+    {
+      "measure": 10,
+      "position": 13,
+      "dir": 12
+    },
+    {
+      "measure": 11,
+      "position": 1,
+      "dir": 12
+    },
+    {
+      "measure": 11,
+      "position": 5,
+      "dir": 3
+    },
+    {
+      "measure": 11,
+      "position": 9,
+      "dir": 3
+    },
+    {
+      "measure": 11,
+      "position": 13,
+      "dir": 3
+    },
+    {
+      "measure": 12,
+      "position": 1,
+      "dir": 3
+    },
+    {
+      "measure": 12,
+      "position": 5,
+      "dir": 3
+    },
+    {
+      "measure": 12,
+      "position": 9,
+      "dir": 3
+    },
+    {
+      "measure": 12,
+      "position": 13,
+      "dir": 12
+    },
+    {
+      "measure": 12,
+      "position": 15,
+      "dir": 12
+    },
+    {
+      "measure": 13,
+      "position": 1,
+      "dir": 12
+    },
+    {
+      "measure": 13,
+      "position": 5,
+      "dir": 3
+    },
+    {
+      "measure": 13,
+      "position": 9,
+      "dir": 3
+    },
+    {
+      "measure": 13,
+      "position": 13,
+      "dir": 3
+    },
+    {
+      "measure": 14,
+      "position": 1,
+      "dir": 3
+    },
+    {
+      "measure": 14,
+      "position": 5,
+      "dir": 3
+    },
+    {
+      "measure": 14,
+      "position": 9,
+      "dir": 3
+    },
+    {
+      "measure": 14,
+      "position": 13,
+      "dir": 12
+    },
+    {
+      "measure": 14,
+      "position": 15,
+      "dir": 12
+    },
+    {
+      "measure": 15,
+      "position": 1,
+      "dir": 12
+    },
+    {
+      "measure": 10,
+      "position": 15,
+      "dir": 12
+    }
+  ]
+}
