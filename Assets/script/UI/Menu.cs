@@ -34,7 +34,10 @@ namespace script.UI {
             if (Keyboard.current.cKey.wasPressedThisFrame)
                 SceneManager.LoadSceneAsync(5);
 
-            if (Keyboard.current.escapeKey.wasPressedThisFrame) escMenu.SetActive(true);
+            if (Keyboard.current.escapeKey.wasPressedThisFrame) {
+                escMenu.SetActive(true);
+                Time.timeScale = 0;
+            }
 
             switch (GameManager.Instance.songNumber) {
                 case 0:
@@ -56,6 +59,7 @@ namespace script.UI {
 
         public void ContinueBtn() {
             escMenu.SetActive(false);
+            Time.timeScale = 1;
         }
 
         public void ExitBtn() {
