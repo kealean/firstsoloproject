@@ -45,7 +45,7 @@ namespace script.UI {
                 case 0:
                     songData.SetText("Camellia - crystallized");
                     bpmText.SetText("BPM: 174");
-                    difficultyText.SetText("Difficult: ●●○○○○○○○○");
+                    difficultyText.SetText("Difficult: ●●●●○○○○○○");
                     break;
                 case 1:
                     songData.SetText("Silentroom - Nhelv");

@@ -8,8 +8,8 @@ namespace script.UI {
         [SerializeField] private NoteManager noteManager;
 
         public void Initialize() {
-            title.SetText($"{noteManager.MapData.composer} - {noteManager.MapData.songTitle}");
-            GameManager.Instance.titleText = $"{noteManager.MapData.composer} - {noteManager.MapData.songTitle}";
+            title.SetText($"{noteManager.MapData.composer}\n{noteManager.MapData.songTitle}");
+            GameManager.Instance.titleText = $"{noteManager.MapData.composer}\n{noteManager.MapData.songTitle}";
         }
     }
 }
