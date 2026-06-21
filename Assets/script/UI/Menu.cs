@@ -55,6 +55,10 @@ namespace script.UI {
             }
         }
 
+        public void OpenBtn() {
+            faq.SetActive(true);
+        }
+
         public void CloseBtn() {
             faq.SetActive(false);
         }

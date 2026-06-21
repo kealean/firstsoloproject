@@ -2,7 +2,7 @@
   "bpm": 174,
   "offset": 1518,
   "beatHeight": 80,
-  "snapDivision": 4,
+  "snapDivision": 8,
   "totalMeasures": 100,
   "direction": "Up",
   "songFile": "crystallized.ogg",
@@ -41,17 +41,17 @@
     },
     {
       "measure": 9,
-      "position": 2,
+      "position": 3,
       "dir": 4
     },
     {
       "measure": 9,
-      "position": 3,
+      "position": 5,
       "dir": 8
     },
     {
       "measure": 9,
-      "position": 4,
+      "position": 7,
       "dir": 4
     },
     {
@@ -61,32 +61,32 @@
     },
     {
       "measure": 10,
-      "position": 2,
+      "position": 3,
       "dir": 4
     },
     {
       "measure": 10,
-      "position": 3,
+      "position": 5,
       "dir": 8
     },
     {
       "measure": 10,
-      "position": 4,
-      "dir": 4
-    },
-    {
-      "measure": 11,
-      "position": 2,
+      "position": 7,
       "dir": 4
     },
     {
       "measure": 11,
       "position": 3,
+      "dir": 4
+    },
+    {
+      "measure": 11,
+      "position": 5,
       "dir": 8
     },
     {
       "measure": 11,
-      "position": 4,
+      "position": 7,
       "dir": 4
     },
     {
@@ -96,17 +96,17 @@
     },
     {
       "measure": 12,
-      "position": 2,
+      "position": 3,
       "dir": 4
     },
     {
       "measure": 12,
-      "position": 3,
+      "position": 5,
       "dir": 8
     },
     {
       "measure": 12,
-      "position": 4,
+      "position": 7,
       "dir": 4
     },
     {
@@ -116,17 +116,17 @@
     },
     {
       "measure": 13,
-      "position": 2,
+      "position": 3,
       "dir": 2
     },
     {
       "measure": 13,
-      "position": 3,
+      "position": 5,
       "dir": 1
     },
     {
       "measure": 13,
-      "position": 4,
+      "position": 7,
       "dir": 2
     },
     {
@@ -136,17 +136,17 @@
     },
     {
       "measure": 14,
-      "position": 2,
+      "position": 3,
       "dir": 2
     },
     {
       "measure": 14,
-      "position": 3,
+      "position": 5,
       "dir": 1
     },
     {
       "measure": 14,
-      "position": 4,
+      "position": 7,
       "dir": 2
     },
     {
@@ -156,17 +156,17 @@
     },
     {
       "measure": 15,
-      "position": 2,
+      "position": 3,
       "dir": 4
     },
     {
       "measure": 15,
-      "position": 3,
+      "position": 5,
       "dir": 8
     },
     {
       "measure": 15,
-      "position": 4,
+      "position": 7,
       "dir": 4
     },
     {
@@ -176,17 +176,17 @@
     },
     {
       "measure": 16,
-      "position": 2,
+      "position": 3,
       "dir": 2
     },
     {
       "measure": 16,
-      "position": 3,
+      "position": 5,
       "dir": 1
     },
     {
       "measure": 16,
-      "position": 4,
+      "position": 7,
       "dir": 2
     },
     {
@@ -196,7 +196,7 @@
     },
     {
       "measure": 18,
-      "position": 4,
+      "position": 7,
       "dir": 3
     },
     {
@@ -206,12 +206,12 @@
     },
     {
       "measure": 20,
-      "position": 3,
+      "position": 5,
       "dir": 3
     },
     {
       "measure": 20,
-      "position": 4,
+      "position": 7,
       "dir": 12
     },
     {
@@ -221,7 +221,7 @@
     },
     {
       "measure": 22,
-      "position": 4,
+      "position": 7,
       "dir": 3
     },
     {
@@ -231,7 +231,7 @@
     },
     {
       "measure": 23,
-      "position": 4,
+      "position": 7,
       "dir": 3
     },
     {
@@ -241,11 +241,241 @@
     },
     {
       "measure": 24,
-      "position": 3,
+      "position": 5,
       "dir": 12
     },
     {
       "measure": 25,
+      "position": 1,
+      "dir": 3
+    },
+    {
+      "measure": 26,
+      "position": 7,
+      "dir": 3
+    },
+    {
+      "measure": 27,
+      "position": 1,
+      "dir": 12
+    },
+    {
+      "measure": 28,
+      "position": 5,
+      "dir": 12
+    },
+    {
+      "measure": 29,
+      "position": 1,
+      "dir": 12
+    },
+    {
+      "measure": 28,
+      "position": 7,
+      "dir": 3
+    },
+    {
+      "measure": 30,
+      "position": 7,
+      "dir": 12
+    },
+    {
+      "measure": 31,
+      "position": 1,
+      "dir": 3
+    },
+    {
+      "measure": 31,
+      "position": 7,
+      "dir": 3
+    },
+    {
+      "measure": 32,
+      "position": 1,
+      "dir": 12
+    },
+    {
+      "measure": 32,
+      "position": 5,
+      "dir": 12
+    },
+    {
+      "measure": 33,
+      "position": 1,
+      "dir": 3
+    },
+    {
+      "measure": 34,
+      "position": 1,
+      "dir": 12
+    },
+    {
+      "measure": 34,
+      "position": 4,
+      "dir": 12
+    },
+    {
+      "measure": 34,
+      "position": 7,
+      "dir": 12
+    },
+    {
+      "measure": 36,
+      "position": 1,
+      "dir": 3
+    },
+    {
+      "measure": 36,
+      "position": 4,
+      "dir": 3
+    },
+    {
+      "measure": 36,
+      "position": 7,
+      "dir": 3
+    },
+    {
+      "measure": 38,
+      "position": 1,
+      "dir": 4
+    },
+    {
+      "measure": 38,
+      "position": 4,
+      "dir": 8
+    },
+    {
+      "measure": 38,
+      "position": 7,
+      "dir": 4
+    },
+    {
+      "measure": 40,
+      "position": 1,
+      "dir": 1
+    },
+    {
+      "measure": 40,
+      "position": 5,
+      "dir": 2
+    },
+    {
+      "measure": 41,
+      "position": 1,
+      "dir": 3
+    },
+    {
+      "measure": 42,
+      "position": 1,
+      "dir": 3
+    },
+    {
+      "measure": 42,
+      "position": 4,
+      "dir": 12
+    },
+    {
+      "measure": 42,
+      "position": 7,
+      "dir": 3
+    },
+    {
+      "measure": 44,
+      "position": 1,
+      "dir": 12
+    },
+    {
+      "measure": 44,
+      "position": 4,
+      "dir": 3
+    },
+    {
+      "measure": 44,
+      "position": 7,
+      "dir": 12
+    },
+    {
+      "measure": 46,
+      "position": 1,
+      "dir": 1
+    },
+    {
+      "measure": 46,
+      "position": 4,
+      "dir": 1
+    },
+    {
+      "measure": 46,
+      "position": 7,
+      "dir": 1
+    },
+    {
+      "measure": 49,
+      "position": 1,
+      "dir": 12
+    },
+    {
+      "measure": 50,
+      "position": 1,
+      "dir": 3
+    },
+    {
+      "measure": 51,
+      "position": 1,
+      "dir": 3
+    },
+    {
+      "measure": 52,
+      "position": 1,
+      "dir": 12
+    },
+    {
+      "measure": 53,
+      "position": 1,
+      "dir": 3
+    },
+    {
+      "measure": 53,
+      "position": 3,
+      "dir": 12
+    },
+    {
+      "measure": 53,
+      "position": 5,
+      "dir": 12
+    },
+    {
+      "measure": 53,
+      "position": 7,
+      "dir": 12
+    },
+    {
+      "measure": 54,
+      "position": 1,
+      "dir": 3
+    },
+    {
+      "measure": 54,
+      "position": 3,
+      "dir": 12
+    },
+    {
+      "measure": 54,
+      "position": 5,
+      "dir": 12
+    },
+    {
+      "measure": 54,
+      "position": 7,
+      "dir": 12
+    },
+    {
+      "measure": 55,
+      "position": 1,
+      "dir": 3
+    },
+    {
+      "measure": 56,
       "position": 1,
       "dir": 3
     }
