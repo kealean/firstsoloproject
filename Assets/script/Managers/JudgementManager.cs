@@ -21,7 +21,6 @@ namespace script.Managers {
         [SerializeField] private TextMeshProUGUI judgementText;
         [SerializeField] private TextMeshProUGUI rateText;
         [SerializeField] private TextMeshProUGUI scoreText;
-        [SerializeField] private SoundClipSO clip;
         [SerializeField] private Transform playerTrm;
 
         private readonly Queue<Note> _noteQueue = new();
@@ -209,16 +208,11 @@ namespace script.Managers {
             targetTimes.Dispose();
             results.Dispose();
 
-            // 캘리브레이션 씬 전용 동작: 입력 오차를 CalibrationManager에 누적 전달합니다.
             if (_noteManager.IsCalibrationMode && _noteManager is CalibrationManager calibMgr)
                 calibMgr.RecordOffset(diff);
         }
-
-        /// <summary>
-        ///     판정 등급에 맞춰 점수 및 정확도를 누적하고, 씬 모드에 맞게 UI 결과를 갱신합니다.
-        /// </summary>
+        
         private void ApplyResult(int judgeType, double diff) {
-            SoundManager.Instance.PlaySfx(playerTrm.position, clip);
             _countNotes++;
             if (judgeType == 0) return;
 

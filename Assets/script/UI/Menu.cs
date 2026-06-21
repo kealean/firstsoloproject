@@ -13,9 +13,11 @@ namespace script.UI {
         [SerializeField] private Button prev;
         [SerializeField] private Button next;
         [SerializeField] private GameObject escMenu;
-
+        [SerializeField] private GameObject faq;
+        
         private void Start() {
             escMenu.SetActive(false);
+            faq.SetActive(false);
         }
 
         private void Update() {
@@ -43,14 +45,18 @@ namespace script.UI {
                 case 0:
                     songData.SetText("Camellia - crystallized");
                     bpmText.SetText("BPM: 174");
-                    difficultyText.SetText("Difficult: ●●●●●●●○○○");
+                    difficultyText.SetText("Difficult: ●●○○○○○○○○");
                     break;
                 case 1:
-                    songData.SetText("ZUN - Bad Apple!!\nfeat.nomico");
-                    bpmText.SetText("BPM: 174");
+                    songData.SetText("Silentroom - Nhelv");
+                    bpmText.SetText("BPM: 174.59");
                     difficultyText.SetText("Difficult: ●●●●●●●●●●");
                     break;
             }
+        }
+
+        public void CloseBtn() {
+            faq.SetActive(false);
         }
 
         public void CaliBtn() {

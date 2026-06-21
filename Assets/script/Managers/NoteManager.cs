@@ -76,26 +76,13 @@ namespace script.Managers {
                 if (t != null && !t.IsHit)
                     t.CheckAndScaleUp(currentBeat, scaleUpDuration, scaleUpEase);
         }
-
-
-        /// <summary>
-        ///     오디오 재생 시작 시점의 DSP 시간
-        /// </summary>
+        
         public double StartTime { get; private set; }
-
-        /// <summary>
-        ///     게임이 실행된 이후 경과한 시작 시점의 실제 시간
-        /// </summary>
+        
         public double InputSystemStartTime { get; private set; }
-
-        /// <summary>
-        ///     현재 로드된 음악의 맵 데이터
-        /// </summary>
+        
         public SongMapData MapData { get; private set; }
-
-        /// <summary>
-        ///     일반 인게임 플레이 모드이므로 false를 반환합니다.
-        /// </summary>
+        
         public bool IsCalibrationMode => false;
 
         private void SpawnNotes() {
