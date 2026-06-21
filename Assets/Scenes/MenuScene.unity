@@ -1221,7 +1221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::script.Lib.Sound.VolumeSlider
   mixer: {fileID: 24100000, guid: 7f9cd61cbac32714bae9b24796efe916, type: 2}
   volumeSlider: {fileID: 763851406}
-  param: SFX
+  param: BGM
 --- !u!1 &789096017
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,6 +35,7 @@ namespace Script.Player {
         }
 
         private void Update() {
+            if (Time.timeScale == 0) return;
             var elapsedTime = AudioSettings.dspTime - StartTime;
             var progress = (float)(elapsedTime * speed) % 4.0f;
 

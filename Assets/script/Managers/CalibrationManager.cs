@@ -77,6 +77,7 @@ namespace script.Managers {
 
         private void Update() {
             if (MapData == null) return;
+            if (Time.timeScale == 0) return;
 
             // 오디오 DSP 시간에 연동하여 실시간 비트를 산출합니다.
             var elapsedTime = AudioSettings.dspTime - StartTime;
@@ -96,12 +97,47 @@ namespace script.Managers {
         /// <summary>
         ///     오디오 재생 시작 시점의 DSP 시간
         /// </summary>
-        public double StartTime { get; private set; }
+        public double StartTime { get; set; }
 
         /// <summary>
         ///     게임이 실행된 이후 경과한 시작 시점의 실제 시간
         /// </summary>
-        public double InputSystemStartTime { get; private set; }
+        public double InputSystemStartTime { get; set; }
+
+        public void OnPause() {
+            if (audioSource != null && audioSource.isPlaying) {
+                audioSource.Pause();
+            }
+        }
+
+        public void OnResume(double pauseDspDuration, double pauseRealtimeDuration) {
+            StartTime += pauseDspDuration;
+            InputSystemStartTime += pauseRealtimeDuration;
+
+            if (player != null) {
+                player.StartTime = StartTime;
+            }
+
+            foreach (var note in _activeNotes) {
+                if (note != null) {
+                    note.AdjustTargetDspTime(pauseDspDuration);
+                }
+            }
+
+            if (audioSource != null) {
+                if (audioSource.clip != null) {
+                    var secondsPerBeat = 60.0 / MapData.bpm;
+                    var delaySeconds = 16.0 * secondsPerBeat - GameManager.Instance.calibrationTime;
+                    
+                    if (AudioSettings.dspTime < StartTime + delaySeconds) {
+                        audioSource.Stop();
+                        audioSource.PlayScheduled(StartTime + delaySeconds);
+                    } else {
+                        audioSource.UnPause();
+                    }
+                }
+            }
+        }
 
         /// <summary>
         ///     현재 캘리브레이션 씬에서 로드한 맵 데이터

@@ -63,5 +63,9 @@ namespace Script.Player {
                 Destroy(gameObject, 0.15f);
             }
         }
+
+        public void AdjustTargetDspTime(double duration) {
+            TargetDspTime += duration;
+        }
     }
 }

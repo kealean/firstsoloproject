@@ -1,5 +1,6 @@
 using script.Lib;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 
@@ -31,6 +32,18 @@ namespace script.Managers {
             _audioSource.loop = true;
             _audioSource.playOnAwake = false;
             _audioSource.volume = 0f;
+
+            var mixer = Resources.Load<AudioMixer>("MainMixer");
+            if (mixer != null) {
+                var groups = mixer.FindMatchingGroups("BGM");
+                if (groups != null && groups.Length > 0) {
+                    _audioSource.outputAudioMixerGroup = groups[0];
+                } else {
+                    Debug.LogWarning("[BGMManager] BGM group not found in MainMixer!");
+                }
+            } else {
+                Debug.LogWarning("[BGMManager] MainMixer not found in Resources!");
+            }
 
             // Load menu BGM from Resources folder
             _menuBgmClip = Resources.Load<AudioClip>(menuBgmResourceName);

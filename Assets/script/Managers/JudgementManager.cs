@@ -66,6 +66,7 @@ namespace script.Managers {
 
         private void Update() {
             if (_noteManager == null) return;
+            if (Time.timeScale == 0) return;
 
             var currentDspTime = AudioSettings.dspTime;
 

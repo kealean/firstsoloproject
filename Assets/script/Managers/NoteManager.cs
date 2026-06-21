@@ -68,6 +68,7 @@ namespace script.Managers {
 
         private void Update() {
             if (MapData == null) return;
+            if (Time.timeScale == 0) return;
 
             var elapsedTime = AudioSettings.dspTime - StartTime;
             var currentBeat = (float)(elapsedTime * (MapData.bpm / 60.0f));
@@ -77,13 +78,49 @@ namespace script.Managers {
                     t.CheckAndScaleUp(currentBeat, scaleUpDuration, scaleUpEase);
         }
         
-        public double StartTime { get; private set; }
+        public double StartTime { get; set; }
         
-        public double InputSystemStartTime { get; private set; }
+        public double InputSystemStartTime { get; set; }
         
         public SongMapData MapData { get; private set; }
         
         public bool IsCalibrationMode => false;
+
+        public void OnPause() {
+            if (audioSource != null && audioSource.isPlaying) {
+                audioSource.Pause();
+            }
+        }
+
+        public void OnResume(double pauseDspDuration, double pauseRealtimeDuration) {
+            StartTime += pauseDspDuration;
+            InputSystemStartTime += pauseRealtimeDuration;
+
+            if (player != null) {
+                player.StartTime = StartTime;
+            }
+
+            foreach (var note in _activeNotes) {
+                if (note != null) {
+                    note.AdjustTargetDspTime(pauseDspDuration);
+                }
+            }
+
+            if (audioSource != null) {
+                if (audioSource.clip != null) {
+                    var secondsPerBeat = 60.0 / MapData.bpm;
+                    var delaySeconds = 16.0 * secondsPerBeat - GameManager.Instance.calibrationTime -
+                                       MapData.offset / 1000f;
+                    
+                    if (AudioSettings.dspTime < StartTime + delaySeconds) {
+                        audioSource.Stop();
+                        audioSource.PlayScheduled(StartTime + delaySeconds);
+                    } else {
+                        audioSource.UnPause();
+                    }
+                }
+            }
+        }
 
         private void SpawnNotes() {
             var startDelayBeats = 16.0f;
