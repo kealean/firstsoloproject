@@ -65,6 +65,7 @@ namespace script.UI {
 
         public void CaliBtn() {
             SceneManager.LoadSceneAsync(5);
+            Time.timeScale = 1;
         }
 
         public void ContinueBtn() {

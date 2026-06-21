@@ -26,6 +26,8 @@ namespace script.UI {
 
         public void CaliBtn() {
             SceneManager.LoadSceneAsync(5);
+            Time.timeScale = 1;
+            AudioListener.pause = false;
         }
 
         public void ContinueBtn() {
@@ -36,6 +38,8 @@ namespace script.UI {
 
         public void ExitBtn() {
             SceneManager.LoadSceneAsync(1);
+            AudioListener.pause = false;
+            Time.timeScale = 1;
         }
     }
 }
