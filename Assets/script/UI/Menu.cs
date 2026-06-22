@@ -42,15 +42,15 @@ namespace script.UI {
             }
 
             switch (GameManager.Instance.songNumber) {
-                case 0:
+                case 1:
                     songData.SetText("Camellia - crystallized");
                     bpmText.SetText("BPM: 174");
-                    difficultyText.SetText("Difficult: ●●●●○○○○○○");
+                    difficultyText.SetText("Difficult: ●●●●●●●○○○");
                     break;
-                case 1:
-                    songData.SetText("Silentroom - Nhelv");
-                    bpmText.SetText("BPM: 174.59");
-                    difficultyText.SetText("Difficult: ●●●●●●●●●●");
+                case 0:
+                    songData.SetText("square3ang - Neon Pulse");
+                    bpmText.SetText("BPM: 128");
+                    difficultyText.SetText("Difficult: ●○○○○○○○○○");
                     break;
             }
         }

@@ -172,12 +172,10 @@ namespace script.Managers {
 
             if (_noteQueue.Count == 0) return;
 
-            // 오디오 시작 DSP 시간과 기기 실행 후 경과 입력 시간 차이를 이용해 정밀한 입력 시점을 구합니다.
             var inputDspTime = _noteManager.StartTime + (inputTime - _noteManager.InputSystemStartTime);
 
             var targetNote = _noteQueue.Peek();
 
-            // 정박(TargetDspTime) 대비 실제 사용자가 키를 입력한 시점(inputDspTime)의 오차를 구합니다.
             var diff = inputDspTime - targetNote.TargetDspTime;
             var absDiff = diff < 0 ? -diff : diff;
 
@@ -202,7 +200,7 @@ namespace script.Managers {
             handle.Complete();
 
             var judgeType = results[0];
-            ApplyResult(judgeType, diff); // 판정 처리 시 실제 오차값(diff)을 인자로 넘깁니다.
+            ApplyResult(judgeType, diff); 
 
             targetNote.OnHit();
 
@@ -225,15 +223,11 @@ namespace script.Managers {
             GameManager.Instance.rate = _totalRate / _countNotes;
             scoreText.SetText($"{_totalScore}");
 
-            // 캘리브레이션 모드와 일반 게임 모드 출력 분기 처리
             if (_noteManager is { IsCalibrationMode: true }) {
-                // 초 단위 오차를 ms 단위로 환산 (1초 = 1000ms)
                 var diffMs = diff * 1000.0;
-                // 소수점 첫째 자리까지 ms 단위로 표기 (부호 포함)
                 judgementText.SetText($"{(diffMs >= 0 ? "+" : "")}{diffMs:F1}ms");
             }
             else {
-                // 일반 플레이 씬에서는 기존대로 판정 이름(PERFECT 등) 출력
                 judgementText.SetText(GetJudgeName(judgeType));
                 switch (judgeType) {
                     case 1:
@@ -256,38 +250,27 @@ namespace script.Managers {
 
             rateText.SetText($"{_totalRate / _countNotes:F1}%");
 
-            // 모든 노트가 판정 처리(입력 완료)되었는지 검사합니다.
             CheckSongCompletion();
         }
 
-        /// <summary>
-        ///     곡에 포함된 모든 노트가 완수(판정 처리)되었는지 체크하여 씬 이동 프로세스를 밟습니다.
-        /// </summary>
         private void CheckSongCompletion() {
             if (_noteManager == null || _noteManager.MapData == null || _noteManager.MapData.notes == null) return;
 
             var totalNotes = _noteManager.MapData.notes.Count;
-            // 판정된 노트 갯수가 총 노트 갯수 이상일 때 완수로 판단합니다.
             if (_countNotes < totalNotes) return;
             if (_noteManager.IsCalibrationMode) {
-                // 캘리브레이션 모드: 판정 텍스트 위치에 최종 조율된 캘리브레이션 결과 노출
                 if (GameManager.Instance != null) {
                     var finalCalibMs = GameManager.Instance.calibrationTime * 1000.0;
                     judgementText.SetText($"Result: {(finalCalibMs >= 0 ? "+" : "")}{finalCalibMs:F1}ms");
                 }
 
-                // 2초 딜레이 후 3번 씬으로 이동
                 StartCoroutine(LoadSceneWithDelay(1, 2.0f));
             }
             else {
-                // 일반 게임 모드: 2초 딜레이 후 4번 씬으로 이동
                 StartCoroutine(LoadSceneWithDelay(4, 2.0f));
             }
         }
-
-        /// <summary>
-        ///     지정한 시간(초)만큼 대기한 후 다음 씬으로 전환합니다.
-        /// </summary>
+        
         private IEnumerator LoadSceneWithDelay(int sceneIndex, float delay) {
             yield return new WaitForSeconds(delay);
             SceneManager.LoadScene(sceneIndex);

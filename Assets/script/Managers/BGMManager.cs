@@ -16,7 +16,6 @@ namespace script.Managers {
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void InitializeOnLoad() {
-            // Accessing the Instance getter creates the singleton instance automatically
             var instance = Instance;
         }
 
@@ -45,13 +44,11 @@ namespace script.Managers {
                 Debug.LogWarning("[BGMManager] MainMixer not found in Resources!");
             }
 
-            // Load menu BGM from Resources folder
             _menuBgmClip = Resources.Load<AudioClip>(menuBgmResourceName);
             if (_menuBgmClip == null) {
                 Debug.LogWarning($"[BGMManager] BGM clip '{menuBgmResourceName}' not found in Resources!");
             }
 
-            // In case the scene was already loaded at the time of Awake (e.g. in editor)
             var currentScene = SceneManager.GetActiveScene();
             CheckAndPlayBGMForScene(currentScene);
         }
