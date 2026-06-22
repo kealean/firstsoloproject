@@ -77,48 +77,41 @@ namespace script.Managers {
                 if (t != null && !t.IsHit)
                     t.CheckAndScaleUp(currentBeat, scaleUpDuration, scaleUpEase);
         }
-        
+
         public double StartTime { get; set; }
-        
+
         public double InputSystemStartTime { get; set; }
-        
+
         public SongMapData MapData { get; private set; }
-        
+
         public bool IsCalibrationMode => false;
 
         public void OnPause() {
-            if (audioSource != null && audioSource.isPlaying) {
-                audioSource.Pause();
-            }
+            if (audioSource != null && audioSource.isPlaying) audioSource.Pause();
         }
 
         public void OnResume(double pauseDspDuration, double pauseRealtimeDuration) {
             StartTime += pauseDspDuration;
             InputSystemStartTime += pauseRealtimeDuration;
 
-            if (player != null) {
-                player.StartTime = StartTime;
-            }
+            if (player != null) player.StartTime = StartTime;
 
-            foreach (var note in _activeNotes) {
-                if (note != null) {
+            foreach (var note in _activeNotes)
+                if (note != null)
                     note.AdjustTargetDspTime(pauseDspDuration);
-                }
-            }
 
-            if (audioSource != null) {
-                if (audioSource.clip != null) {
-                    var secondsPerBeat = 60.0 / MapData.bpm;
-                    var delaySeconds = 16.0 * secondsPerBeat - GameManager.Instance.calibrationTime -
-                                       MapData.offset / 1000f;
-                    
-                    if (AudioSettings.dspTime < StartTime + delaySeconds) {
-                        audioSource.Stop();
-                        audioSource.PlayScheduled(StartTime + delaySeconds);
-                    } else {
-                        audioSource.UnPause();
-                    }
-                }
+            if (audioSource == null) return;
+            if (audioSource.clip == null) return;
+            var secondsPerBeat = 60.0 / MapData.bpm;
+            var delaySeconds = 16.0 * secondsPerBeat - GameManager.Instance.calibrationTime -
+                               MapData.offset / 1000f;
+
+            if (AudioSettings.dspTime < StartTime + delaySeconds) {
+                audioSource.Stop();
+                audioSource.PlayScheduled(StartTime + delaySeconds);
+            }
+            else {
+                audioSource.UnPause();
             }
         }
 

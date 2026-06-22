@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using script.Lib.Sound;
 using Script.Player;
 using TMPro;
 using Unity.Collections;
@@ -48,20 +47,17 @@ namespace script.Managers {
             if (noteManager != null) _noteManager = noteManager;
 
             // 2순위: 인스펙터에 없을 경우 씬 전체에서 NoteManager를 자동 검색합니다.
-            if (_noteManager == null) _noteManager = FindFirstObjectByType<NoteManager>();
-
             // 3순위: 캘리브레이션 씬 등에서 CalibrationManager가 단독 동작할 경우 이를 자동 바인딩합니다.
-            if (_noteManager == null) _noteManager = FindFirstObjectByType<CalibrationManager>();
+            _noteManager ??= FindFirstObjectByType<NoteManager>() ??
+                             (INoteManager)FindFirstObjectByType<CalibrationManager>();
 
-            if (inputActionsAsset != null) {
-                var playerMap = inputActionsAsset.FindActionMap("Player");
-                if (playerMap != null) {
-                    _upAction = playerMap.FindAction("Up");
-                    _downAction = playerMap.FindAction("Down");
-                    _leftAction = playerMap.FindAction("Left");
-                    _rightAction = playerMap.FindAction("Right");
-                }
-            }
+            if (inputActionsAsset == null) return;
+            var playerMap = inputActionsAsset.FindActionMap("Player");
+            if (playerMap == null) return;
+            _upAction = playerMap.FindAction("Up");
+            _downAction = playerMap.FindAction("Down");
+            _leftAction = playerMap.FindAction("Left");
+            _rightAction = playerMap.FindAction("Right");
         }
 
         private void Update() {
@@ -200,7 +196,7 @@ namespace script.Managers {
             handle.Complete();
 
             var judgeType = results[0];
-            ApplyResult(judgeType, diff); 
+            ApplyResult(judgeType, diff);
 
             targetNote.OnHit();
 
@@ -210,7 +206,7 @@ namespace script.Managers {
             if (_noteManager.IsCalibrationMode && _noteManager is CalibrationManager calibMgr)
                 calibMgr.RecordOffset(diff);
         }
-        
+
         private void ApplyResult(int judgeType, double diff) {
             _countNotes++;
             if (judgeType == 0) return;
@@ -270,7 +266,7 @@ namespace script.Managers {
                 StartCoroutine(LoadSceneWithDelay(4, 2.0f));
             }
         }
-        
+
         private IEnumerator LoadSceneWithDelay(int sceneIndex, float delay) {
             yield return new WaitForSeconds(delay);
             SceneManager.LoadScene(sceneIndex);

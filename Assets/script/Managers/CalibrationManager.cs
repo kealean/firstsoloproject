@@ -78,37 +78,30 @@ namespace script.Managers {
         public double InputSystemStartTime { get; set; }
 
         public void OnPause() {
-            if (audioSource != null && audioSource.isPlaying) {
-                audioSource.Pause();
-            }
+            if (audioSource != null && audioSource.isPlaying) audioSource.Pause();
         }
 
         public void OnResume(double pauseDspDuration, double pauseRealtimeDuration) {
             StartTime += pauseDspDuration;
             InputSystemStartTime += pauseRealtimeDuration;
 
-            if (player != null) {
-                player.StartTime = StartTime;
-            }
+            if (player != null) player.StartTime = StartTime;
 
-            foreach (var note in _activeNotes) {
-                if (note != null) {
+            foreach (var note in _activeNotes)
+                if (note != null)
                     note.AdjustTargetDspTime(pauseDspDuration);
-                }
-            }
 
-            if (audioSource != null) {
-                if (audioSource.clip != null) {
-                    var secondsPerBeat = 60.0 / MapData.bpm;
-                    var delaySeconds = 16.0 * secondsPerBeat - GameManager.Instance.calibrationTime;
-                    
-                    if (AudioSettings.dspTime < StartTime + delaySeconds) {
-                        audioSource.Stop();
-                        audioSource.PlayScheduled(StartTime + delaySeconds);
-                    } else {
-                        audioSource.UnPause();
-                    }
-                }
+            if (audioSource == null) return;
+            if (audioSource.clip == null) return;
+            var secondsPerBeat = 60.0 / MapData.bpm;
+            var delaySeconds = 16.0 * secondsPerBeat - GameManager.Instance.calibrationTime;
+
+            if (AudioSettings.dspTime < StartTime + delaySeconds) {
+                audioSource.Stop();
+                audioSource.PlayScheduled(StartTime + delaySeconds);
+            }
+            else {
+                audioSource.UnPause();
             }
         }
 
@@ -117,9 +110,7 @@ namespace script.Managers {
         public void RecordOffset(double offset) {
             _offsets.Add(offset);
 
-            if (GameManager.Instance != null) {
-                GameManager.Instance.calibrationTime += offset * 0.5;
-            }
+            if (GameManager.Instance != null) GameManager.Instance.calibrationTime += offset * 0.5;
         }
 
         private void SpawnNotes() {
@@ -135,11 +126,11 @@ namespace script.Managers {
                 var notePos = GetPositionAtBeat(noteBeat);
                 var rotationAngle = GetRotationAngle(noteData.dir);
 
-                GameObject noteObj = null;
-                if (isDoubleArrow && doubleArrowPrefab != null)
-                    noteObj = Instantiate(doubleArrowPrefab, transform);
-                else if (!isDoubleArrow && singleArrowPrefab != null)
-                    noteObj = Instantiate(singleArrowPrefab, transform);
+                var noteObj = isDoubleArrow switch {
+                    true when doubleArrowPrefab != null => Instantiate(doubleArrowPrefab, transform),
+                    false when singleArrowPrefab != null => Instantiate(singleArrowPrefab, transform),
+                    _ => null
+                };
 
                 var noteComp = noteObj?.GetComponent<Note>();
                 if (noteComp == null) noteComp = noteObj?.AddComponent<Note>();
@@ -160,6 +151,7 @@ namespace script.Managers {
 
             return Vector3.Lerp(player.Corners[currentIndex], player.Corners[nextIndex], t);
         }
+
         private float GetRotationAngle(int dir) {
             return dir switch {
                 8 => 0f,

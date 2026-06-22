@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Script.Player {
+namespace script {
     [Serializable]
     public class NoteData {
         public int measure;

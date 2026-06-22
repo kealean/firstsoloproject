@@ -1,8 +1,8 @@
+using DG.Tweening;
 using script.Lib;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
-using DG.Tweening;
 
 namespace script.Managers {
     public class BGMManager : MonoSingleton<BGMManager> {
@@ -11,22 +11,15 @@ namespace script.Managers {
         [SerializeField] private float fadeDuration = 1.0f;
 
         private AudioSource _audioSource;
-        private AudioClip _menuBgmClip;
         private Tween _fadeTween;
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        private static void InitializeOnLoad() {
-            var instance = Instance;
-        }
+        private AudioClip _menuBgmClip;
 
         protected override void Awake() {
             base.Awake();
             DontDestroyOnLoad(gameObject);
 
             _audioSource = gameObject.GetComponent<AudioSource>();
-            if (_audioSource == null) {
-                _audioSource = gameObject.AddComponent<AudioSource>();
-            }
+            if (_audioSource == null) _audioSource = gameObject.AddComponent<AudioSource>();
 
             _audioSource.loop = true;
             _audioSource.playOnAwake = false;
@@ -35,19 +28,18 @@ namespace script.Managers {
             var mixer = Resources.Load<AudioMixer>("MainMixer");
             if (mixer != null) {
                 var groups = mixer.FindMatchingGroups("BGM");
-                if (groups != null && groups.Length > 0) {
+                if (groups != null && groups.Length > 0)
                     _audioSource.outputAudioMixerGroup = groups[0];
-                } else {
+                else
                     Debug.LogWarning("[BGMManager] BGM group not found in MainMixer!");
-                }
-            } else {
+            }
+            else {
                 Debug.LogWarning("[BGMManager] MainMixer not found in Resources!");
             }
 
             _menuBgmClip = Resources.Load<AudioClip>(menuBgmResourceName);
-            if (_menuBgmClip == null) {
+            if (_menuBgmClip == null)
                 Debug.LogWarning($"[BGMManager] BGM clip '{menuBgmResourceName}' not found in Resources!");
-            }
 
             var currentScene = SceneManager.GetActiveScene();
             CheckAndPlayBGMForScene(currentScene);
@@ -61,15 +53,23 @@ namespace script.Managers {
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        private static void InitializeOnLoad() {
+            var instance = Instance;
+        }
+
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
             CheckAndPlayBGMForScene(scene);
         }
 
         private void CheckAndPlayBGMForScene(Scene scene) {
-            if (scene.name == "Title" || scene.name == "MenuScene" || scene.name == "Result") {
-                PlayMenuBGM();
-            } else if (scene.name == "GameScene" || scene.name == "CaliScene" || scene.name == "LoadScene") {
-                FadeOutBGM();
+            switch (scene.name) {
+                case "Title" or "MenuScene" or "Result":
+                    PlayMenuBGM();
+                    break;
+                case "GameScene" or "CaliScene" or "LoadScene":
+                    FadeOutBGM();
+                    break;
             }
         }
 
@@ -80,7 +80,8 @@ namespace script.Managers {
                 _audioSource.clip = _menuBgmClip;
                 _audioSource.volume = 0f;
                 _audioSource.Play();
-            } else if (!_audioSource.isPlaying) {
+            }
+            else if (!_audioSource.isPlaying) {
                 _audioSource.Play();
             }
 
@@ -95,9 +96,7 @@ namespace script.Managers {
             _fadeTween?.Kill();
             _fadeTween = _audioSource.DOFade(0f, fadeDuration)
                 .SetUpdate(true)
-                .OnComplete(() => {
-                    _audioSource.Stop();
-                });
+                .OnComplete(() => { _audioSource.Stop(); });
         }
     }
 }

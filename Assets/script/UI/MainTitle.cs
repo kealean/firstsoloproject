@@ -9,10 +9,9 @@ namespace script.UI {
         private Tween _tween;
 
         private void Update() {
-            if (Keyboard.current.anyKey.wasPressedThisFrame) {
-                SceneManager.LoadSceneAsync(1);
-                _tween = loadingText.transform.DOMoveX(0, 1f).SetEase(Ease.OutBack);
-            }
+            if (!Keyboard.current.anyKey.wasPressedThisFrame) return;
+            SceneManager.LoadSceneAsync(1);
+            _tween = loadingText.transform.DOMoveX(0, 1f).SetEase(Ease.OutBack);
         }
 
         private void OnDestroy() {

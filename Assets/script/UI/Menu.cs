@@ -14,7 +14,7 @@ namespace script.UI {
         [SerializeField] private Button next;
         [SerializeField] private GameObject escMenu;
         [SerializeField] private GameObject faq;
-        
+
         private void Start() {
             escMenu.SetActive(false);
             faq.SetActive(false);
